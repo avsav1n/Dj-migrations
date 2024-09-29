@@ -4,10 +4,15 @@
 {% block title %}Список учеников{% endblock %}
 {% block content %}
 <div class="row">
-  <ul>
+  <ol type="1">
   {% for student in object_list %}
-    <li>{{ student.name }} {{ student.group }} <br> Преподаватель: {{ student.teacher.name }} {{ student.teacher.subject }}</li>
+    <li>{{ student.name }} {{ student.group }} <br> Преподаватели:</li>
+        <ul style="list-style-type:disc">
+        {% for teacher in student.teachers.all %}
+            <li>{{ teacher.name }}: {{ teacher.subject }}</li>
+        {% endfor %}
+        </ul>
   {% endfor %}
-  </ul>
+  </ol>
 </div>
 {% endblock %}
